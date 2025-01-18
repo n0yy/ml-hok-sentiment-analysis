@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt_tab')
@@ -7,9 +8,8 @@ from nltk.tokenize import word_tokenize
 
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from string import punctuation
-from tqdm.auto import tqdm
 
-from typing import List, Union
+from typing import List, Union, Optional
 
 class Preprocessor:
     def __init__(self):
@@ -17,23 +17,67 @@ class Preprocessor:
         self.tokenizer = word_tokenize
         self.stopwords = list(stopwords.words('indonesian') + list(punctuation))
 
-    def lowercasing(self, text: str) -> str:
+    def lowercasing(self, text: str) -> Optional[str]:
         """
-        Converts the input text to lowercase with error handling.
+        Converts the input text to lowercase and cleans special characters.
+
+        This function:
+        1. Handles non-string inputs and NaN values
+        2. Removes emojis and emoticons
+        3. Removes HTML tags
+        4. Removes special characters while preserving valid punctuation
+        5. Converts text to lowercase
 
         Args:
-            text: The input text to be converted to lowercase.
+            text: Input text to be processed
 
         Returns:
-            The lowercase version of the input text. If the input is not a string and is NaN, returns None.
-        """
+            Optional[str]: Processed lowercase text, or None if input is NaN/None
 
-        if not isinstance(text, str):
+        Examples:
+            >>> preprocessor.lowercasing("Hello World! 😊 <p>Test</p>")
+            'hello world test'
+            >>> preprocessor.lowercasing(None)
+            None
+        """
+        try:
+            # Handle None and NaN values
             if pd.isna(text):
                 return None
-            text = str(text)
-        return text.lower()
-    
+
+            # Convert to string if not already
+            if not isinstance(text, str):
+                text = str(text)
+
+            # Remove emojis and emoticons
+            # This pattern covers both Unicode emojis and ASCII-style emoticons
+            emoji_pattern = re.compile("["
+                u"\U0001F600-\U0001F64F"  # emoticons
+                u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                u"\U00002702-\U000027B0"  # dingbats
+                u"\U000024C2-\U0001F251"  # enclosed characters
+                "]+|"
+                "[:;=][-']?[)(/\\|dpP]"   # ASCII emoticons
+            )
+            text = emoji_pattern.sub('', text)
+
+            # Remove HTML tags
+            text = re.sub(r'<[^>]+>', '', text)
+
+            # Remove special characters but preserve valid punctuation
+            # This keeps spaces between words and removes other special characters
+            text = re.sub(r'[^\w\s\.]', ' ', text)
+            
+            # Remove extra whitespace
+            text = ' '.join(text.split())
+
+            return text.lower()
+        except Exception as e:
+            print(f"Error in lowercasing: {str(e)}")
+            return None
+        
     def stemming(self, text: str) -> str:
         """
         Performs stemming on the input text with error handling.
