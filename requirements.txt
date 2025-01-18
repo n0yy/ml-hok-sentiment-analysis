@@ -1,0 +1,8 @@
+PySastrawi
+transformers
+nltk
+wordcloud
+pandas
+numpy
+plotly
+tqdm
