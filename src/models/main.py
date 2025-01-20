@@ -16,5 +16,5 @@ if __name__ == "__main__":
         result_df.to_csv(f"data/analyzed/{file}", index=False)
         
     end = time.time()
-    print(f"Total time: {(end - start) / 60} minutes")
+    print(f"Total time: {round(((end - start) / 60), 2)} minutes")
     

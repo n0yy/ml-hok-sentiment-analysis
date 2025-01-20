@@ -68,23 +68,15 @@ class IndoBERTForSentimentAnalysis:
         if X not in df.columns:
             raise ValueError(f"Kolom '{X}' tidak ditemukan dalam DataFrame")
 
-        # Pastikan kolom dinamai 'text' agar sesuai dengan pipeline
         dataset = Dataset.from_pandas(df[[X]].rename(columns={X: "text"}).astype(str))
 
-        # Debugging tambahan untuk memeriksa input
-        print("Sample input data:", dataset[0])
-
-        # Inisialisasi tqdm
         pbar = tqdm(total=len(dataset), desc="Processing Sentiments", unit="text")
 
         def batch_process(examples):
             texts = examples["text"]
-            # Pastikan input berupa list string
-            if not all(isinstance(text, str) for text in texts):
-                raise ValueError("Semua input dalam batch harus berupa string.")
             results = self.sentiment_pipe(texts, batch_size=batch_size)
             sentiments = [self.config.labels[result["label"]] for result in results]
-            pbar.update(len(texts))  # Update progres
+            pbar.update(len(texts))
             return {"sentiments": sentiments}
 
         # Proses data dalam batch
