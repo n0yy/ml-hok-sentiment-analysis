@@ -11,7 +11,7 @@ if __name__ == "__main__":
     for file in files:
         df = pd.read_csv(f"data/processed/{file}")
         print(f"============================== Analyzing in Dataframe {file} ==============================")
-        result_df = model.analyze_dataframe(df=df, X="comment_prep", batch_size=32)
+        result_df = model.analyze_dataframe(df=df, X="comment", batch_size=32)
         # Save to analyzed folder
         result_df.to_csv(f"data/analyzed/{file}", index=False)
         

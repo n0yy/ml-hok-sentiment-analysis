@@ -15,7 +15,7 @@ class Preprocessor:
     def __init__(self):
         self.stemmer = StemmerFactory().create_stemmer()
         self.tokenizer = word_tokenize
-        self.stopwords = list(stopwords.words('indonesian') + list(punctuation))
+        self.stopwords = list(stopwords.words('indonesian') + list(punctuation)) + ["gk", "gak", "ga", "yg", "nya", "aja", "y", "ya", "honor", "of", "kings", "king", "terima", "kasih", "mobile", "legend", "legends", "ml", "hok"]
 
     def lowercasing(self, text: str) -> Optional[str]:
         """
@@ -77,7 +77,7 @@ class Preprocessor:
         except Exception as e:
             print(f"Error in lowercasing: {str(e)}")
             return None
-        
+
     def stemming(self, text: str) -> str:
         """
         Performs stemming on the input text with error handling.
