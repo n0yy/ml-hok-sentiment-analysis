@@ -31,13 +31,13 @@ This report presents a comprehensive analysis comparing user feedback for Mobile
    - Word stemming via PySastrawi 🌱
 
 3. **Analysis Methods** 📈
-   - Sentiment classification (Positive/Neutral/Negative)
+   - Sentiment classification (Positive/Neutral/Negative)using [IndoBERT](https://huggingface.co/mdhugol/indonesia-bert-sentiment-classification)
    - N-gram analysis (Unigram, Bigram, Trigram)
 
 ## Results and Visualizations 📊
 
 ### 1. Sentiment Distribution 😊😐😢
-![Sentiment Distribution](sentiment_distibution.png)
+![Sentiment Distribution](reports/sentiment_distibution.png)
 
 #### Mobile Legends: Bang Bang
 - **Negative**: 84% 😢
@@ -57,17 +57,17 @@ This report presents a comprehensive analysis comparing user feedback for Mobile
 ### 2. Unigram Analysis 📝
 
 #### Mobile Legends: Bang Bang
-![Wordcloud Unigram of MLBB](mlbb/unigram_wc.png)
+![Wordcloud Unigram of MLBB](reports/mlbb/unigram_wc.png)
 *WordCloud Unigram in MLBB* 🌟
 
-![Barplot unigram of MLBB](mlbb/unigram_bar.png)
+![Barplot unigram of MLBB](reports/mlbb/unigram_bar.png)
 *Barplot of Unigram of MLBB* 📊
 
 #### Honor of Kings
-![Wordcloud Unigram of hok](hok/unigram_wc.png)
+![Wordcloud Unigram of hok](reports/hok/unigram_wc.png)
 *WordCloud Unigram in HoK* 🌟
 
-![Barplot unigram of hok](hok/unigram_bar.png)
+![Barplot unigram of hok](reports/hok/unigram_bar.png)
 *Barplot of Unigram in HoK* 📊
 
 ##### Insights 💡
@@ -76,17 +76,17 @@ Both games show different user focus areas - MLBB faces technical challenges whi
 ### 3. Bigram Analysis 🔤
 
 #### Mobile Legends: Bang Bang
-![Wordcloud bigram of MLBB](mlbb/bigram_wc.png)
+![Wordcloud bigram of MLBB](reports/mlbb/bigram_wc.png)
 *WordCloud Bigram in MLBB* ✨
 
-![Barplot bigram of MLBB](mlbb/bigram_bar.png)
+![Barplot bigram of MLBB](reports/mlbb/bigram_bar.png)
 *Barplot of Bigram of MLBB* 📈
 
 #### Honor of Kings
-![Wordcloud bigram of hok](hok/bigram_wc.png)
+![Wordcloud bigram of hok](reports/hok/bigram_wc.png)
 *WordCloud Bigram in HoK* ✨
 
-![Barplot bigram of hok](hok/bigram_bar.png)
+![Barplot bigram of hok](reports/hok/bigram_bar.png)
 *Barplot of Bigram of HoK* 📈
 
 ##### Insights 🧐
@@ -95,17 +95,17 @@ The highest TF-IDF scores tell different stories: MLBB's "dark sistem" vs HoK's 
 ### 4. Trigram Analysis 📚
 
 #### Mobile Legends: Bang Bang
-![Wordcloud Trigram of MLBB](mlbb/trigram_wc.png)
+![Wordcloud Trigram of MLBB](reports/mlbb/trigram_wc.png)
 *WordCloud Trigram in MLBB* 💫
 
-![Barplot trigram of MLBB](mlbb/trigram_bar.png)
+![Barplot trigram of MLBB](reports/mlbb/trigram_bar.png)
 *Barplot of Trigram of MLBB* 📊
 
 #### Honor of Kings
-![Wordcloud trigram of hok](hok/trigram_wc.png)
+![Wordcloud trigram of hok](reports/hok/trigram_wc.png)
 *WordCloud Trigram in HoK* 💫
 
-![Barplot trigram of hok](hok/trigram_bar.png)
+![Barplot trigram of hok](reports/hok/trigram_bar.png)
 *Barplot of Trigram of HoK* 📊
 
 ##### Insights 🔍
@@ -140,11 +140,5 @@ MLBB's "tim dark sistem" versus HoK's "game udh bagus" shows a striking contrast
 - Balance free and premium content 💎
 - Build on user satisfaction 🏆
 
-### Future Research Opportunities 🔮
-- Long-term sentiment tracking 📊
-- Monetization impact study 💰
-- Feature-specific analysis 🎯
-- User retention deep dive 🎮
-
 ---
-*Note: This analysis reflects user feedback data and may not represent all players. Keep monitoring for more insights! 📈*
+*Note: This analysis reflects user feedback data and may not represent all players*
